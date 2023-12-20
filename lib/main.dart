@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+//@Barra Putra
+//41823010131
+
 void main(){
   runApp(MyApp());
 }
@@ -13,6 +16,6 @@ class MyApp extends StatelessWidget{
         primarySwatch: Colors.indigo,
       ),
       home: HomeScreen(),
-    )
+    );
   }
 }
