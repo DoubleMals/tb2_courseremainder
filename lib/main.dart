@@ -1,21 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:tb2_courseremainder/model/person.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:tb2_courseremainder/features/info_screen.dart';
 
-//@Barra Putra
-//41823010131
-
-void main(){
+main() async {
+// Initialize hive
+  await Hive.initFlutter();
+// Registering the adapter
+  Hive.registerAdapter(PersonAdapter());
+// Opening the box
+  await Hive.openBox('peopleBox');
   runApp(MyApp());
 }
-
-class MyApp extends StatelessWidget{
+class MyApp extends StatefulWidget {
   @override
-  Widget build(BuildContext context){
+  _MyAppState createState() => _MyAppState();
+}
+class _MyAppState extends State<MyApp> {
+  @override
+  void dispose() {
+// Closes all Hive boxes
+    Hive.close();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
+      title: 'Hive Demo',
       theme: ThemeData(
         primarySwatch: Colors.indigo,
       ),
-      home: HomeScreen(),
+      debugShowCheckedModeBanner: false,
+      home: InfoScreen(),
     );
   }
 }
